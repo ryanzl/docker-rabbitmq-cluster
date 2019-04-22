@@ -29,4 +29,4 @@ EXPOSE 9105
 
 CMD /opt/rabbit/startrabbit.sh
 
-#RUN rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+RUN rabbitmq-plugins enable rabbitmq_delayed_message_exchange
