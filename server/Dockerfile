@@ -5,11 +5,18 @@ ADD rabbitmq.config /etc/rabbitmq/
 ADD erlang.cookie /var/lib/rabbitmq/.erlang.cookie
 ADD startrabbit.sh /opt/rabbit/
 
+#下载死信插件
+RUN curl https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message_exchange/rabbitmq_delayed_message_exchange-20171201-3.7.x.zip -o rabbitmq_delayed_message_exchange-20171201-3.7.x.zip --progress \
+&& unzip rabbitmq_delayed_message_exchange-20171201-3.7.x.zip \
+&& cp rabbitmq_delayed_message_exchange-20171201-3.7.x.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.7.0/plugins/ \
+
+
 RUN chmod u+rw /etc/rabbitmq/rabbitmq.config \
 && chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie \
 && chmod 400 /var/lib/rabbitmq/.erlang.cookie \
 && mkdir -p /opt/rabbit \
 && chmod a+x /opt/rabbit/startrabbit.sh
+&& sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 EXPOSE 5672
 EXPOSE 15672
