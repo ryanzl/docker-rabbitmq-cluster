@@ -37,8 +37,8 @@ else
 		else
 			rabbitmqctl join_cluster --ram rabbit@$CLUSTER_WITH
 		fi
-		rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 		rabbitmqctl start_app
+		rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 		# Tail to keep the a foreground process active..
 		tail -f /var/log/rabbitmq/rabbit\@$HOSTNAME.log
