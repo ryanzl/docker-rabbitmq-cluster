@@ -7,4 +7,4 @@ docker tag ryanzl2018/rabbitmq-server:$TAG ryanzl2018/rabbitmq-server:$TAG
 
 #登录dockerhub
 #docker login
-docker push  ryanzl2018/rabbitmq-server
+docker push  ryanzl2018/rabbitmq-server:$TAG
