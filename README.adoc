@@ -13,7 +13,7 @@ There are 3 folders.
 
 Running the Cluster:
 ===============================
-Once the images are built, boot up the cluster using the docker-compose.yml configuration provided in cluster folder:    
+Once the images are built, boot up the cluster using the docker-compose.yml configuration provided in cluster folder:
 
 [source]
 ----
@@ -38,7 +38,7 @@ rabbit2:
   hostname: rabbit2
   links:
     - rabbit1
-  environment: 
+  environment:
    - CLUSTERED=true
    - CLUSTER_WITH=rabbit1
    - RAM_NODE=true
@@ -52,16 +52,17 @@ rabbit3:
   links:
     - rabbit1
     - rabbit2
-  environment: 
+  environment:
    - CLUSTERED=true
-   - CLUSTER_WITH=rabbit1   
+   - CLUSTER_WITH=rabbit1
   ports:
-        - "5674:5672"  
+        - "5674:5672"
 ----
 
 if needed, additional nodes can be added to this file. If the entire cluster comes up, the management console can be accessed at http://<dockerip>:15672
 
 and connection host should look like this: `dockerip:5672,dockerip:5673,dockerip:5674`
 
-
-    
+注意：
+此版本增加了死信队列，容器运行后，需要容器中执行开启死信队列插件的命令
+rabbitmq-plugins enable rabbitmq_delayed_message_exchange
