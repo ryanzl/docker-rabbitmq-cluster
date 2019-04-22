@@ -1,5 +1,5 @@
 rabbit1:
-  image: ryanzl2018/rabbitmq-server:latest
+  image: ryanzl2018/rabbitmq-server:3.7.0
   hostname: rabbit1
   ports:
     - "5672:5672"
@@ -8,7 +8,7 @@ rabbit1:
     - RABBITMQ_DEFAULT_USER=myuser
     - RABBITMQ_DEFAULT_PASS=mypass
 rabbit2:
-  image: ryanzl2018/rabbitmq-server:latest
+  image: ryanzl2018/rabbitmq-server:3.7.0
   hostname: rabbit2
   links:
     - rabbit1
@@ -21,7 +21,7 @@ rabbit2:
       - "15673:15672"
 
 rabbit3:
-  image: ryanzl2018/rabbitmq-server:latest
+  image: ryanzl2018/rabbitmq-server:3.7.0
   hostname: rabbit3
   links:
     - rabbit1
